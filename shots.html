@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tennis Shots 🎾 — KidsTennis</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .nav-links a[href="shots.html"] { background: var(--yellow); color: var(--nav-bg); }
+
+    .shots-intro-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      max-width: 900px;
+      margin: 0 auto 56px;
+      padding: 0 24px;
+    }
+    .shot-pill {
+      background: var(--white);
+      border-radius: 50px;
+      padding: 12px 24px;
+      font-weight: 800;
+      font-size: 1rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      cursor: default;
+    }
+    .shot-pill:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .shot-pill.sp-yellow { border-left: 4px solid var(--yellow); }
+    .shot-pill.sp-green  { border-left: 4px solid var(--green); }
+    .shot-pill.sp-orange { border-left: 4px solid var(--orange); }
+    .shot-pill.sp-blue   { border-left: 4px solid var(--blue); }
+
+    /* Shot accordion toggle */
+    .shot-toggle-btn {
+      background: none;
+      border: none;
+      font-family: var(--font-main);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--nav-bg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      padding: 6px 0;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .shot-toggle-btn:hover { color: var(--orange); }
+
+    .common-mistakes {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s ease, opacity 0.3s;
+      opacity: 0;
+    }
+    .common-mistakes.open {
+      max-height: 300px;
+      opacity: 1;
+    }
+    .mistake-list {
+      margin-top: 12px;
+      padding-left: 0;
+    }
+    .mistake-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      font-size: 0.97rem;
+      line-height: 1.5;
+      color: #444;
+    }
+    .mistake-list li::before {
+      content: '❌';
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .shots-fun-fact {
+      background: linear-gradient(135deg, var(--yellow-light), var(--orange-light));
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      text-align: center;
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      padding-left: 48px;
+      padding-right: 48px;
+      box-shadow: var(--shadow);
+    }
+    .shots-fun-fact h3 { font-size: 1.4rem; font-weight: 900; margin-bottom: 10px; }
+    .shots-fun-fact p  { font-size: 1rem; color: #555; line-height: 1.6; max-width: 640px; margin: 0 auto; }
+
+    .shot-card-section {
+      max-width: 1100px;
+      margin: 0 auto 0px;
+      padding: 0 24px;
+    }
+    .shot-section-title {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+    }
+
+    .shot-card {
+      margin-bottom: 52px;
+    }
+
+    /* Progress quiz at the bottom */
+    .quiz-section {
+      background: linear-gradient(135deg, #e8f5e9, var(--blue-light));
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      padding-left: 48px;
+      padding-right: 48px;
+      box-shadow: var(--shadow);
+    }
+    .quiz-section h3 { font-size: 1.4rem; font-weight: 900; text-align: center; margin-bottom: 24px; }
+    .quiz-q { margin-bottom: 24px; }
+    .quiz-q p { font-weight: 700; margin-bottom: 10px; font-size: 1.03rem; }
+    .quiz-options { display: flex; flex-wrap: wrap; gap: 10px; }
+    .quiz-opt {
+      background: var(--white);
+      border: 2px solid #ddd;
+      border-radius: 50px;
+      padding: 8px 20px;
+      font-family: var(--font-main);
+      font-size: 0.97rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .quiz-opt:hover { border-color: var(--blue); transform: scale(1.03); }
+    .quiz-opt.correct { background: var(--green); color: white; border-color: var(--green); }
+    .quiz-opt.wrong   { background: var(--red);   color: white; border-color: var(--red);   }
+    .quiz-feedback { font-size: 0.95rem; font-weight: 700; margin-top: 8px; min-height: 1.4em; }
+  </style>
+</head>
+<body>
+
+  <!-- ======== NAVIGATION ======== -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <span class="ball-icon"></span>
+      KidsTennis
+    </a>
+    <div class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="skills.html">🤸 Skills</a></li>
+      <li><a href="shots.html" class="active">🎾 Shots</a></li>
+      <li><a href="about.html">ℹ️ About</a></li>
+      <li><a href="contact.html">📬 Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ======== PAGE HERO ======== -->
+  <div class="page-hero green-bg">
+    <h1>Learn Your Tennis Shots! 🎾</h1>
+    <p>Every tennis superstar starts with these <strong>4 basic shots</strong>. Learn them step-by-step in easy, fun language — let's go! 🚀</p>
+  </div>
+
+  <!-- ======== SHOT PILLS ======== -->
+  <div class="shots-intro-strip">
+    <div class="shot-pill sp-yellow">🤚 Forehand</div>
+    <div class="shot-pill sp-green">✋ Backhand</div>
+    <div class="shot-pill sp-orange">🎯 Serve</div>
+    <div class="shot-pill sp-blue">👊 Volley</div>
+  </div>
+
+  <!-- ======== SHOT 1: FOREHAND ======== -->
+  <section class="shot-card-section">
+    <p class="shot-section-title">Shot 1 of 4</p>
+    <div class="shot-card">
+      <div class="shot-visual yellow-bg">
+        <span class="shot-big-emoji">🤚</span>
+        <div class="shot-label">Forehand</div>
+      </div>
+      <div class="shot-info">
+        <span class="shot-tag tag-yellow">⭐ Your Main Shot!</span>
+        <h2>The Forehand 🤚</h2>
+        <p class="shot-desc">
+          The forehand is the shot where you swing with your hitting hand facing the ball — like you're giving it a high-five! It's the most important shot in tennis.
+        </p>
+        <ol class="steps">
+          <li>Get into your <strong>ready position</strong> — feet apart, knees bent.</li>
+          <li>When you see the ball coming, <strong>turn your body sideways</strong> — so your hitting shoulder points at the ball.</li>
+          <li>Bring your racket back — arm stretched out behind you.</li>
+          <li>As the ball bounces and comes up, <strong>swing your racket low to high</strong> — like a rainbow 🌈 from your hip to your shoulder!</li>
+          <li>Hit the ball when it is at <strong>hip height</strong> — in front of your body, not beside you.</li>
+          <li>Finish with your racket up by your opposite shoulder. Take a bow! 🎭</li>
+        </ol>
+        <div class="tip-box yellow">
+          <span class="tip-icon">🌈</span>
+          <span><strong>Magic word: LOW TO HIGH!</strong> Always swing from low down near your hip, upward toward your shoulder. This makes the ball go over the net!</span>
+        </div>
+        <button class="shot-toggle-btn" onclick="toggleMistakes('fh')">
+          <span id="fh-arrow">▶</span> Common mistakes to avoid
+        </button>
+        <div class="common-mistakes" id="fh-mistakes">
+          <ul class="mistake-list">
+            <li>Swinging too flat — remember, swing LOW TO HIGH!</li>
+            <li>Hitting the ball too late — turn your body early!</li>
+            <li>Looking away from the ball — keep eyes on it!</li>
+            <li>Standing too close or too far — take one step away from the ball.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== SHOT 2: BACKHAND ======== -->
+  <section class="shot-card-section">
+    <p class="shot-section-title">Shot 2 of 4</p>
+    <div class="shot-card reverse">
+      <div class="shot-visual green-bg">
+        <span class="shot-big-emoji">✋</span>
+        <div class="shot-label">Backhand</div>
+      </div>
+      <div class="shot-info">
+        <span class="shot-tag tag-green">The Other Side!</span>
+        <h2>The Backhand ✋</h2>
+        <p class="shot-desc">
+          The backhand is for balls that come to the other side — you swing across your body! You can use <strong>one hand</strong> or <strong>two hands</strong> on the grip. Two hands is easier for beginners!
+        </p>
+        <ol class="steps">
+          <li>Get ready! When the ball comes to your backhand side, <strong>turn your body</strong> the other way.</li>
+          <li>Put your non-hitting hand on the racket too — <strong>two hands together</strong> on the handle.</li>
+          <li>Bring the racket back across your body — like you're hugging yourself.</li>
+          <li>As the ball bounces up, swing the racket <strong>across your body, low to high</strong>.</li>
+          <li>Hit the ball out in front — don't wait for it to pass you!</li>
+          <li>Finish with your racket pointing toward where the ball went — like you're pointing at a friend!</li>
+        </ol>
+        <div class="tip-box green">
+          <span class="tip-icon">🤗</span>
+          <span><strong>Two-hand tip:</strong> Your non-hitting hand does most of the work on a backhand — push through with it!</span>
+        </div>
+        <button class="shot-toggle-btn" onclick="toggleMistakes('bh')">
+          <span id="bh-arrow">▶</span> Common mistakes to avoid
+        </button>
+        <div class="common-mistakes" id="bh-mistakes">
+          <ul class="mistake-list">
+            <li>Letting the ball pass you — swing early, not late!</li>
+            <li>Only using one hand (at first) — two hands give more power!</li>
+            <li>Not turning your shoulders — really rotate your whole body.</li>
+            <li>Stopping the swing early — follow through all the way!</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== SHOT 3: SERVE ======== -->
+  <section class="shot-card-section">
+    <p class="shot-section-title">Shot 3 of 4</p>
+    <div class="shot-card">
+      <div class="shot-visual orange-bg">
+        <span class="shot-big-emoji">🎯</span>
+        <div class="shot-label">Serve</div>
+      </div>
+      <div class="shot-info">
+        <span class="shot-tag tag-orange">Start the Point!</span>
+        <h2>The Serve 🎯</h2>
+        <p class="shot-desc">
+          The serve starts every point — it's YOUR shot, because you get to toss the ball yourself! For red ball beginners, we use an easy underarm serve that's simple and fun to learn.
+        </p>
+        <ol class="steps">
+          <li>Stand behind the baseline (the back line). Hold the ball in your non-hitting hand.</li>
+          <li>For a <strong>beginner serve</strong>, hold the ball at waist height and swing <strong>underarm</strong> — like a bowling toss!</li>
+          <li>Toss the ball slightly forward and at the same time swing your racket forward and UP.</li>
+          <li>Hit the ball when it's in front of you — aim it diagonally across the net into the service box.</li>
+          <li>Follow through — your racket should end up pointing where the ball went.</li>
+          <li><strong>Bonus:</strong> For overarm serve, toss the ball up above your head and swing DOWN onto it — like scratching the sky! 🌤️</li>
+        </ol>
+        <div class="tip-box orange">
+          <span class="tip-icon">🎳</span>
+          <span><strong>Beginner trick:</strong> Think of the underarm serve like a slow-motion bowling throw — toss forward, swing forward!</span>
+        </div>
+        <button class="shot-toggle-btn" onclick="toggleMistakes('sv')">
+          <span id="sv-arrow">▶</span> Common mistakes to avoid
+        </button>
+        <div class="common-mistakes" id="sv-mistakes">
+          <ul class="mistake-list">
+            <li>Tossing too far behind you — toss just slightly in front!</li>
+            <li>Swinging too hard — a slow, smooth serve is better than a fast wild one.</li>
+            <li>Forgetting to aim — pick a spot to aim at before you serve.</li>
+            <li>Faulting (missing the service box) — aim higher over the net.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== SHOT 4: VOLLEY ======== -->
+  <section class="shot-card-section">
+    <p class="shot-section-title">Shot 4 of 4</p>
+    <div class="shot-card reverse">
+      <div class="shot-visual blue-bg">
+        <span class="shot-big-emoji">👊</span>
+        <div class="shot-label">Volley</div>
+      </div>
+      <div class="shot-info">
+        <span class="shot-tag tag-blue">At the Net!</span>
+        <h2>The Volley 👊</h2>
+        <p class="shot-desc">
+          A volley is when you hit the ball in the air before it bounces! You do this up at the net — quick short punches, like you're blocking in slow motion. No big swing!
+        </p>
+        <ol class="steps">
+          <li>Move up to the net — stand about 2 steps from it.</li>
+          <li>Get in your ready position — racket up in front of you!</li>
+          <li>When the ball comes, make a <strong>short punching motion</strong> forward — no big backswing!</li>
+          <li>Keep your wrist firm and stiff — don't let it flop around.</li>
+          <li>Make contact <strong>in front</strong> of your body — never let it reach your side.</li>
+          <li>Just a small follow-through — imagine you're gently pushing the ball away.</li>
+        </ol>
+        <div class="tip-box blue">
+          <span class="tip-icon">🥊</span>
+          <span><strong>The golden rule:</strong> NO BIG SWING! A volley is a small, controlled PUNCH. The ball already has speed — you just guide it!</span>
+        </div>
+        <button class="shot-toggle-btn" onclick="toggleMistakes('vl')">
+          <span id="vl-arrow">▶</span> Common mistakes to avoid
+        </button>
+        <div class="common-mistakes" id="vl-mistakes">
+          <ul class="mistake-list">
+            <li>Taking a big swing — keep it short and punchy!</li>
+            <li>Letting the ball get beside you — meet it in FRONT.</li>
+            <li>Dropping the racket head — keep the racket face up and firm.</li>
+            <li>Running away from the net — stay close, stay brave! 💪</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FUN FACT BOX ======== -->
+  <div class="shots-fun-fact">
+    <h3>🌟 Did You Know? 🌟</h3>
+    <p>
+      Professional tennis players practice the same basic shots — forehand, backhand, serve, volley — <strong>every single day</strong>. The difference between a beginner and a pro is just how many times they've practiced! Keep hitting! 🏅
+    </p>
+  </div>
+
+  <!-- ======== MINI QUIZ ======== -->
+  <div class="quiz-section">
+    <h3>🧠 Quick Shot Quiz! Test Your Knowledge!</h3>
+
+    <div class="quiz-q">
+      <p>1. Which direction do you swing for a forehand? 👇</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answer(this,'wrong')">High to low ⬇️</button>
+        <button class="quiz-opt" onclick="answer(this,'correct')">Low to high ⬆️</button>
+        <button class="quiz-opt" onclick="answer(this,'wrong')">Side to side ↔️</button>
+      </div>
+      <div class="quiz-feedback" id="qf1"></div>
+    </div>
+
+    <div class="quiz-q">
+      <p>2. For a volley, how big should your swing be? 🥊</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answer(this,'wrong')">Huge swing 💥</button>
+        <button class="quiz-opt" onclick="answer(this,'wrong')">Medium swing</button>
+        <button class="quiz-opt" onclick="answer(this,'correct')">Short punch 👊</button>
+      </div>
+      <div class="quiz-feedback" id="qf2"></div>
+    </div>
+
+    <div class="quiz-q">
+      <p>3. In a backhand, where should you hit the ball? 🎯</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answer(this,'wrong')">Behind your body</button>
+        <button class="quiz-opt" onclick="answer(this,'correct')">In front of your body</button>
+        <button class="quiz-opt" onclick="answer(this,'wrong')">Above your head</button>
+      </div>
+      <div class="quiz-feedback" id="qf3"></div>
+    </div>
+
+    <div class="quiz-q">
+      <p>4. What starts every point in tennis? 🌟</p>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answer(this,'wrong')">The volley</button>
+        <button class="quiz-opt" onclick="answer(this,'wrong')">The forehand</button>
+        <button class="quiz-opt" onclick="answer(this,'correct')">The serve</button>
+      </div>
+      <div class="quiz-feedback" id="qf4"></div>
+    </div>
+  </div>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <span class="foot-balls">🎾 🎾 🎾</span>
+    <strong>KidsTennis — Let's Play! 🏆</strong>
+    <p>📞 502-802-9207 · ✉️ kidstennis@gmail.com · Tom Sawyer &amp; Briar Hill Parks</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+      document.getElementById('ham').classList.toggle('open');
+    }
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+        document.getElementById('ham').classList.remove('open');
+      });
+    });
+
+    function toggleMistakes(id) {
+      const el = document.getElementById(id + '-mistakes');
+      const arrow = document.getElementById(id + '-arrow');
+      const isOpen = el.classList.contains('open');
+      el.classList.toggle('open');
+      arrow.textContent = isOpen ? '▶' : '▼';
+    }
+
+    let answerCount = 0;
+    const feedbackMessages = [
+      '',
+      ['', '', '', ''],
+      ['', '🎉 Correct! LOW TO HIGH is the key!', '❌ Nope! Think about a rainbow swing.', '❌ Not quite! Swing upward!'],
+      ['🎉 YES! Short punch — no big swing!', '', '❌ Not quite! Think short and snappy.', ''],
+      ['❌ Behind would be too late!', '🎉 Correct! In FRONT of your body!', '❌ That would be a very awkward backhand!', ''],
+      ['❌ The volley starts at the net, not the game!', '❌ Close, but the serve goes first!', '🎉 Correct! The SERVE starts every point!', ''],
+    ];
+
+    const qCorrect  = ['', false, true,  false];
+    const qCorrect2 = [false, false, true];
+    let qIdx = 0;
+
+    function answer(btn, result) {
+      // find all siblings
+      const options = btn.closest('.quiz-options').querySelectorAll('.quiz-opt');
+      // disable all
+      options.forEach(o => o.disabled = true);
+      btn.classList.add(result);
+      // find feedback div
+      const qDiv = btn.closest('.quiz-q');
+      const fb = qDiv.querySelector('.quiz-feedback');
+      if (result === 'correct') {
+        fb.textContent = '🎉 That\'s right! Amazing! 🌟';
+        fb.style.color = 'var(--green)';
+      } else {
+        fb.textContent = '❌ Not quite — check the step-by-step above!';
+        fb.style.color = 'var(--red)';
+        // highlight correct answer
+        options.forEach(o => {
+          if (!o.classList.contains('wrong')) {
+            o.classList.add('correct');
+          }
+        });
+      }
+    }
+  </script>
+</body>
+</html>

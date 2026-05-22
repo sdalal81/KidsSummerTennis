@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skills &amp; Drills 🤸 — KidsTennis</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .nav-links a[href="skills.html"] { background: var(--yellow); color: var(--nav-bg); }
+
+    .drills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .ready-position {
+      background: linear-gradient(135deg, #e8f5e9, #fffde7);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 40px 36px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+    .ready-position .rp-visual {
+      text-align: center;
+    }
+    .rp-figure {
+      font-size: 8rem;
+      display: block;
+      animation: rpBounce 2s ease-in-out infinite;
+      line-height: 1;
+    }
+    @keyframes rpBounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-12px); }
+    }
+    .rp-caption {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #666;
+      margin-top: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .ready-position h2 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--nav-bg);
+      margin-bottom: 16px;
+    }
+    .ready-position .rp-checklist {
+      padding: 0;
+    }
+    .ready-position .rp-checklist li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      font-size: 1rem;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+    .rp-check { font-size: 1.2rem; flex-shrink: 0; }
+
+    .drill-card.c-yellow { border-top: 6px solid var(--yellow); }
+    .drill-card.c-green  { border-top: 6px solid var(--green); }
+    .drill-card.c-orange { border-top: 6px solid var(--orange); }
+    .drill-card.c-red    { border-top: 6px solid var(--red); }
+    .drill-card.c-blue   { border-top: 6px solid var(--blue); }
+    .drill-card.c-purple { border-top: 6px solid var(--purple); }
+
+    .bonus-section {
+      background: linear-gradient(135deg, var(--blue-light), var(--purple-light));
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      margin-top: 48px;
+      text-align: center;
+    }
+    .bonus-section h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: 10px; }
+    .bonus-section p  { font-size: 1rem; color: #444; line-height: 1.6; max-width: 620px; margin: 0 auto; }
+    .bonus-challenges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .challenge-chip {
+      background: var(--white);
+      border-radius: 50px;
+      padding: 10px 20px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.15s;
+    }
+    .challenge-chip:hover { transform: scale(1.07); }
+
+    @media (max-width: 640px) {
+      .ready-position { grid-template-columns: 1fr; }
+      .rp-figure { font-size: 5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======== NAVIGATION ======== -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <span class="ball-icon"></span>
+      KidsTennis
+    </a>
+    <div class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="skills.html" class="active">🤸 Skills</a></li>
+      <li><a href="shots.html">🎾 Shots</a></li>
+      <li><a href="about.html">ℹ️ About</a></li>
+      <li><a href="contact.html">📬 Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ======== PAGE HERO ======== -->
+  <div class="page-hero yellow-bg">
+    <h1>Skills &amp; Drills 🤸‍♀️</h1>
+    <p>These fun drills help you build <strong>hand-eye coordination</strong> — the superpower every tennis player needs! Try them all and earn your stars! ⭐</p>
+  </div>
+
+  <!-- ======== STAR TRACKER ======== -->
+  <section class="section" style="padding-bottom: 0;">
+    <div class="star-counter">
+      <h3>⭐ My Drill Stars ⭐</h3>
+      <p style="font-size:0.95rem; color:#666; margin-bottom:16px; font-weight:600;">Click a star when you finish a drill!</p>
+      <div class="star-row">
+        <span class="drill-star" data-drill="1" onclick="toggleStar(this)">🌟</span>
+        <span class="drill-star" data-drill="2" onclick="toggleStar(this)">🌟</span>
+        <span class="drill-star" data-drill="3" onclick="toggleStar(this)">🌟</span>
+        <span class="drill-star" data-drill="4" onclick="toggleStar(this)">🌟</span>
+        <span class="drill-star" data-drill="5" onclick="toggleStar(this)">🌟</span>
+        <span class="drill-star" data-drill="6" onclick="toggleStar(this)">🌟</span>
+      </div>
+      <div class="star-msg" id="starMsg">Complete a drill and click your star!</div>
+    </div>
+  </section>
+
+  <!-- ======== READY POSITION ======== -->
+  <section class="section">
+    <h2 class="section-title">First: The Ready Position! 🦸</h2>
+    <p class="section-subtitle">Before every shot, get into your <strong>ready position</strong> — this is how all tennis players stand!</p>
+
+    <div class="ready-position">
+      <div class="rp-visual">
+        <span class="rp-figure">🧍</span>
+        <div class="rp-caption">Ready Position!</div>
+      </div>
+      <div>
+        <h2>Stand Like a Tennis Superhero! 🦸‍♂️</h2>
+        <ul class="rp-checklist">
+          <li><span class="rp-check">👟</span> <span>Feet shoulder-width apart — like you're standing on two trampolines!</span></li>
+          <li><span class="rp-check">🦵</span> <span>Bend your knees slightly — stay bouncy and ready to move!</span></li>
+          <li><span class="rp-check">🏸</span> <span>Hold your racket up in front of you with both hands — one on the grip, one touching the neck.</span></li>
+          <li><span class="rp-check">👀</span> <span>Eyes forward, watching the ball — like a hawk! 🦅</span></li>
+          <li><span class="rp-check">💃</span> <span>Stay on your toes, rocking gently — never stand still!</span></li>
+        </ul>
+        <div class="tip-box yellow" style="margin-top: 20px;">
+          <span class="tip-icon">💡</span>
+          <span><strong>Coach Tip:</strong> Practice your ready position every morning for 30 seconds — it will become automatic!</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======== 5 DRILLS ======== -->
+    <h2 class="section-title">The 5 Super Drills 🎯</h2>
+    <p class="section-subtitle">Try each drill and get your star when you can do it 5 times in a row!</p>
+
+    <div class="drills-grid">
+
+      <!-- DRILL 1: Balloon Taps -->
+      <div class="drill-card c-yellow">
+        <span class="drill-number">1</span>
+        <div class="drill-emoji">🎈</div>
+        <h3>Balloon Taps</h3>
+        <p class="drill-desc">
+          Tap a balloon up in the air and keep it from touching the ground! This is the <strong>best drill for beginners</strong> because the balloon is huge and slow — perfect for learning to watch and swing!
+        </p>
+        <div class="drill-how">How to do it:</div>
+        <ul>
+          <li>Blow up a regular party balloon</li>
+          <li>Hold your racket in your hitting hand</li>
+          <li>Tap the balloon upward with your racket face</li>
+          <li>Try to tap it 5 times without dropping it!</li>
+          <li>Challenge: Can you tap it 10 times? 20?</li>
+        </ul>
+        <div class="tip-box yellow">
+          <span class="tip-icon">🌟</span>
+          <span><strong>Star Challenge:</strong> 10 taps in a row!</span>
+        </div>
+        <span class="difficulty diff-easy">⭐ Easy — great for beginners!</span>
+      </div>
+
+      <!-- DRILL 2: Bounce and Catch -->
+      <div class="drill-card c-green">
+        <span class="drill-number">2</span>
+        <div class="drill-emoji">🔴</div>
+        <h3>Bounce &amp; Catch</h3>
+        <p class="drill-desc">
+          Bounce a red foam ball on the ground and catch it with your hands! This teaches you to <strong>watch the ball</strong> and judge where it will go — the most important skill in tennis!
+        </p>
+        <div class="drill-how">How to do it:</div>
+        <ul>
+          <li>Hold the red ball in one hand</li>
+          <li>Drop it to the ground — let it bounce up</li>
+          <li>Catch it with two hands as it comes up</li>
+          <li>Try bouncing and catching with one hand!</li>
+          <li>Next: bounce, clap once, then catch!</li>
+        </ul>
+        <div class="tip-box green">
+          <span class="tip-icon">👀</span>
+          <span><strong>Key skill:</strong> Keep your eyes on the ball the whole time — watch it all the way into your hands!</span>
+        </div>
+        <span class="difficulty diff-easy">⭐ Easy — great for beginners!</span>
+      </div>
+
+      <!-- DRILL 3: Racket Balancing -->
+      <div class="drill-card c-orange">
+        <span class="drill-number">3</span>
+        <div class="drill-emoji">⚖️</div>
+        <h3>Racket Balancing</h3>
+        <p class="drill-desc">
+          Balance the red ball on your racket face and walk around without it falling off! This builds <strong>a gentle touch</strong> and teaches you to feel the racket — just like a magician!
+        </p>
+        <div class="drill-how">How to do it:</div>
+        <ul>
+          <li>Place the red ball on the flat face of your racket</li>
+          <li>Hold the racket steady — don't let the ball roll off!</li>
+          <li>Take 3 steps forward without dropping it</li>
+          <li>Try turning around in a full circle!</li>
+          <li>Advanced: walk backwards with the ball on the racket</li>
+        </ul>
+        <div class="tip-box orange">
+          <span class="tip-icon">🎩</span>
+          <span><strong>Magic tip:</strong> Look at the ball, not at your feet — that's how you keep it balanced!</span>
+        </div>
+        <span class="difficulty diff-medium">⭐⭐ Medium — takes practice!</span>
+      </div>
+
+      <!-- DRILL 4: Wall Rally -->
+      <div class="drill-card c-red">
+        <span class="drill-number">4</span>
+        <div class="drill-emoji">🧱</div>
+        <h3>Wall Rally</h3>
+        <p class="drill-desc">
+          Hit the red ball against a wall and keep the rally going! The wall <strong>never misses</strong> — it will always hit it back to you, making it the perfect practice partner!
+        </p>
+        <div class="drill-how">How to do it:</div>
+        <ul>
+          <li>Stand about 2–3 big steps from a wall</li>
+          <li>Drop the ball, let it bounce, then hit it toward the wall</li>
+          <li>When it bounces back, hit it again!</li>
+          <li>Count how many times in a row you can hit it</li>
+          <li>Try moving back one step each time you get to 5!</li>
+        </ul>
+        <div class="tip-box red">
+          <span class="tip-icon">🧱</span>
+          <span><strong>Pro secret:</strong> Aim at the same spot on the wall every time — that gives you a steady bounce back!</span>
+        </div>
+        <span class="difficulty diff-medium">⭐⭐ Medium — takes practice!</span>
+      </div>
+
+      <!-- DRILL 5: Target Toss -->
+      <div class="drill-card c-blue">
+        <span class="drill-number">5</span>
+        <div class="drill-emoji">🎯</div>
+        <h3>Target Toss</h3>
+        <p class="drill-desc">
+          Set up hoops, chalk circles, or buckets on the ground and aim your shots at them! Hitting a <strong>target</strong> teaches you control and accuracy — the secret weapon of great tennis players!
+        </p>
+        <div class="drill-how">How to do it:</div>
+        <ul>
+          <li>Place a hoop or draw a circle on the ground (2 metres away)</li>
+          <li>Drop the ball, bounce it, and try to hit it into the target</li>
+          <li>Score 1 point for each ball that lands in!</li>
+          <li>Move the target farther away for more challenge</li>
+          <li>Try 3 different targets and aim for each one</li>
+        </ul>
+        <div class="tip-box blue">
+          <span class="tip-icon">🎯</span>
+          <span><strong>Aim trick:</strong> Look at the target BEFORE you swing — then your body knows where to send the ball!</span>
+        </div>
+        <span class="difficulty diff-hard">⭐⭐⭐ Tricky — you've got this!</span>
+      </div>
+
+      <!-- DRILL 6: Forehand Rally with Partner -->
+      <div class="drill-card c-purple">
+        <span class="drill-number">6</span>
+        <div class="drill-emoji">👫</div>
+        <h3>Partner Rally</h3>
+        <p class="drill-desc">
+          Hit the ball back and forth with a friend, parent, or coach! <strong>Rallying together</strong> is the heart of tennis — work as a team to keep the ball going as long as possible!
+        </p>
+        <div class="drill-how">How to do it:</div>
+        <ul>
+          <li>Stand about 3–4 big steps apart from your partner</li>
+          <li>One person drops and hits the ball to the other</li>
+          <li>The other person lets it bounce once, then hits it back</li>
+          <li>Count every hit together — that's your rally score!</li>
+          <li>Celebrate when you beat your record! 🎉</li>
+        </ul>
+        <div class="tip-box purple">
+          <span class="tip-icon">🤝</span>
+          <span><strong>Team tip:</strong> Hit the ball gently to your partner — not too hard, not too soft. Help each other succeed!</span>
+        </div>
+        <span class="difficulty diff-hard">⭐⭐⭐ Tricky — you've got this!</span>
+      </div>
+
+    </div>
+
+    <!-- ======== BONUS CHALLENGES ======== -->
+    <div class="bonus-section">
+      <h3>🏆 Bonus Challenges!</h3>
+      <p>Completed all 6 drills? Amazing! Now try these <strong>super challenges</strong> to level up your skills even more!</p>
+      <div class="bonus-challenges">
+        <div class="challenge-chip">🎈 30 balloon taps</div>
+        <div class="challenge-chip">🤹 Bounce left hand only</div>
+        <div class="challenge-chip">⚖️ Balance &amp; spin around</div>
+        <div class="challenge-chip">🧱 10 wall hits in a row</div>
+        <div class="challenge-chip">🎯 3 targets, 3 points</div>
+        <div class="challenge-chip">👫 20-shot rally!</div>
+        <div class="challenge-chip">🔄 Bounce behind your back</div>
+        <div class="challenge-chip">👁️ Catch with eyes closed!</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <span class="foot-balls">🎾 🎾 🎾</span>
+    <strong>KidsTennis — Let's Play! 🏆</strong>
+    <p>📞 502-802-9207 · ✉️ kidstennis@gmail.com · Tom Sawyer &amp; Briar Hill Parks</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+      document.getElementById('ham').classList.toggle('open');
+    }
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+        document.getElementById('ham').classList.remove('open');
+      });
+    });
+
+    const starMessages = [
+      '',
+      "Great start! 1 drill done! Keep going! 💪",
+      "Awesome! 2 drills! You're on fire! 🔥",
+      "Halfway there! 3 drills! Superstar! ⭐",
+      "Amazing! 4 drills! Almost there! 🚀",
+      "Wow! 5 drills! Just one more! 🏅",
+      "🏆 ALL 6 DRILLS! You're a Tennis Champion! 🎉🎊🏆"
+    ];
+
+    function toggleStar(el) {
+      el.classList.toggle('done');
+      const count = document.querySelectorAll('.drill-star.done').length;
+      const msg = document.getElementById('starMsg');
+      msg.textContent = starMessages[count] || starMessages[0];
+      msg.style.color = count === 6 ? 'var(--green)' : 'var(--orange)';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KidsTennis 🎾 — Learn Tennis with Red Balls!</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ---- Page-specific extras ---- */
+    .home-section-alt {
+      background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+    }
+    .home-cta-banner {
+      background: linear-gradient(135deg, var(--orange), #ff8f00);
+      color: var(--white);
+      text-align: center;
+      padding: 56px 24px;
+      border-radius: 0;
+    }
+    .home-cta-banner h2 {
+      font-size: clamp(1.6rem, 5vw, 2.6rem);
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    .home-cta-banner p {
+      font-size: 1.1rem;
+      margin-bottom: 28px;
+      opacity: 0.92;
+      font-weight: 600;
+    }
+    .nav-links a[href="index.html"] { background: var(--yellow); color: var(--nav-bg); }
+    .racket-spin {
+      display: inline-block;
+      font-size: 2rem;
+      animation: spinRacket 4s linear infinite;
+    }
+    @keyframes spinRacket {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    .welcome-emojis {
+      font-size: 2rem;
+      letter-spacing: 8px;
+      display: block;
+      margin-bottom: 20px;
+      animation: waveEmoji 2s ease-in-out infinite;
+    }
+    @keyframes waveEmoji {
+      0%, 100% { transform: rotate(0deg); }
+      25%  { transform: rotate(8deg); }
+      75%  { transform: rotate(-8deg); }
+    }
+    .marketing-hook {
+      background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 60%, #388E3C 100%);
+      color: var(--white);
+      padding: 60px 24px;
+    }
+    .mh-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+    }
+    .mh-text {
+      flex: 1;
+      min-width: 280px;
+    }
+    .mh-text h2 {
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 900;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .mh-text p {
+      font-size: 1rem;
+      line-height: 1.7;
+      opacity: 0.92;
+    }
+    .mh-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 220px;
+    }
+    .mh-pill {
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.25);
+      border-radius: 50px;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .pricing-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+      align-items: stretch;
+    }
+    .price-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 32px 28px;
+      width: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      transition: transform 0.2s;
+    }
+    .price-card:hover { transform: translateY(-6px); }
+    .price-card-featured {
+      border: 3px solid var(--green);
+      box-shadow: var(--shadow-lg);
+      transform: scale(1.04);
+    }
+    .price-card-featured:hover { transform: scale(1.04) translateY(-6px); }
+    .pc-badge {
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--yellow-light);
+      color: #7a6000;
+      padding: 4px 14px;
+      border-radius: 50px;
+    }
+    .price-card-featured .pc-badge {
+      background: var(--green-light);
+      color: var(--green);
+    }
+    .pc-price {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--green);
+      line-height: 1;
+    }
+    .pc-price span {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #888;
+    }
+    .pc-label {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+    .pc-features {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0;
+      text-align: left;
+      width: 100%;
+    }
+    .pc-features li {
+      font-size: 0.9rem;
+      color: #555;
+      padding: 5px 0;
+      border-bottom: 1px solid #f0f0f0;
+      line-height: 1.4;
+    }
+    .pc-features li:last-child { border-bottom: none; }
+
+    .how-step-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      counter-reset: how-counter;
+    }
+    .how-step {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 28px 24px;
+      width: 220px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.2s;
+      counter-increment: how-counter;
+    }
+    .how-step:hover { transform: translateY(-6px); }
+    .how-step::before {
+      content: counter(how-counter);
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--yellow);
+      color: var(--dark);
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .how-step .hs-icon { font-size: 2.6rem; margin-bottom: 12px; }
+    .how-step h4 { font-size: 1.05rem; font-weight: 800; margin-bottom: 6px; }
+    .how-step p { font-size: 0.9rem; color: #555; line-height: 1.5; }
+  </style>
+</head>
+<body>
+
+  <!-- ======== NAVIGATION ======== -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <span class="ball-icon"></span>
+      KidsTennis
+    </a>
+    <div class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">🏠 Home</a></li>
+      <li><a href="skills.html">🤸 Skills</a></li>
+      <li><a href="shots.html">🎾 Shots</a></li>
+      <li><a href="about.html">ℹ️ About</a></li>
+      <li><a href="contact.html">📬 Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ======== HERO ======== -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="bg-ball b1"></div>
+      <div class="bg-ball b2"></div>
+      <div class="bg-ball b3"></div>
+      <div class="bg-ball b4"></div>
+      <div class="bg-ball b5"></div>
+    </div>
+    <div class="hero-content">
+      <span class="welcome-emojis">🌟⭐🌟</span>
+      <div class="hero-badge">🎾 For Kids Ages 5–10 🎾</div>
+
+      <div class="big-ball-wrap">
+        <div class="big-ball"></div>
+        <div class="ball-shadow"></div>
+      </div>
+
+      <h1 class="hero-title">
+        Welcome to<br><span class="accent">Kids Tennis!</span>
+      </h1>
+      <p class="hero-subtitle">
+        Learn to play tennis with fun red foam balls 🔴 — at your local park or public court, with a grown-up close by. Casual, low-cost, and loads of fun! ⭐
+      </p>
+      <div class="btn-group">
+        <a href="skills.html" class="btn btn-primary">🤸 Try Skills Drills</a>
+        <a href="shots.html" class="btn btn-secondary">🎾 Learn Shots</a>
+        <a href="about.html" class="btn btn-orange">ℹ️ What Is Red Ball?</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FEATURE STRIP ======== -->
+  <div class="feature-strip">
+    <div class="feature-item">
+      <span class="fi-icon">🔴</span>
+      <span>Red Foam Balls</span>
+    </div>
+    <div class="feature-item">
+      <span class="fi-icon">👶</span>
+      <span>Ages 5–10</span>
+    </div>
+    <div class="feature-item">
+      <span class="fi-icon">🌳</span>
+      <span>Parks &amp; Public Courts</span>
+    </div>
+    <div class="feature-item">
+      <span class="fi-icon">💰</span>
+      <span>Low Cost</span>
+    </div>
+    <div class="feature-item">
+      <span class="fi-icon">😄</span>
+      <span>Casual &amp; Fun!</span>
+    </div>
+    <div class="feature-item">
+      <span class="fi-icon">🏆</span>
+      <span>Build Confidence</span>
+    </div>
+  </div>
+
+  <!-- ======== WHY RED BALL ======== -->
+  <section class="section">
+    <h2 class="section-title">Why Red Ball Tennis? 🔴</h2>
+    <p class="section-subtitle">Red balls bounce slower and lower — perfect for little players learning big skills!</p>
+    <div class="cards-grid">
+      <div class="card yellow">
+        <span class="card-emoji">🐢</span>
+        <h3>Slower Ball = More Fun</h3>
+        <p>Red foam balls travel <strong>75% slower</strong> than regular balls. You have more time to see it, get ready, and swing!</p>
+      </div>
+      <div class="card green">
+        <span class="card-emoji">📏</span>
+        <h3>Smaller Court</h3>
+        <p>We play on a mini court that's just the right size for young players. No running too far!</p>
+      </div>
+      <div class="card orange">
+        <span class="card-emoji">🏸</span>
+        <h3>Lighter Racket</h3>
+        <p>Junior rackets are shorter and lighter so little arms can swing easily without getting tired.</p>
+      </div>
+      <div class="card red">
+        <span class="card-emoji">😊</span>
+        <h3>More Rallies!</h3>
+        <p>Because the ball is slower, you can keep it going back and forth — that means more fun rallies!</p>
+      </div>
+      <div class="card blue">
+        <span class="card-emoji">🧠</span>
+        <h3>Build Real Skills</h3>
+        <p>You learn the same real tennis techniques — forehand, backhand, serve, volley — just made easier!</p>
+      </div>
+      <div class="card purple">
+        <span class="card-emoji">🌍</span>
+        <h3>Used Worldwide</h3>
+        <p>Tennis 10s and red ball programs are used by tennis clubs in <strong>180+ countries</strong> around the world!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== HOW IT WORKS ======== -->
+  <!-- ======== MARKETING HOOK ======== -->
+  <div class="marketing-hook">
+    <div class="mh-inner">
+      <div class="mh-text">
+        <h2>Why pay club fees before your child even knows they love tennis?</h2>
+        <p>Club memberships, court bookings, coaching packages — the costs add up fast. <strong>Start here first.</strong> Build the basics at your local park, see if your child takes to it, and <em>then</em> decide if a club is worth it. No commitment, no contracts — just fun tennis at a price that makes sense.</p>
+      </div>
+      <div class="mh-pills">
+        <span class="mh-pill">❌ No club membership</span>
+        <span class="mh-pill">❌ No court booking fees</span>
+        <span class="mh-pill">❌ No expensive gear</span>
+        <span class="mh-pill">✅ Just $15–$30/hr</span>
+        <span class="mh-pill">✅ Balls provided</span>
+        <span class="mh-pill">✅ Real skills, real fun</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="section home-section-alt" style="max-width:100%; padding: 60px 24px; margin:0;">
+    <div style="max-width:1100px; margin:0 auto;">
+      <h2 class="section-title">Get Your Basic Skills First 🚀</h2>
+      <p class="section-subtitle">Five simple steps and your child is on the court!</p>
+      <div class="how-step-row">
+        <div class="how-step">
+          <div class="hs-icon">🏸</div>
+          <h4>Find a Racket</h4>
+          <p>Use a small junior racket (17–21 inches). Second-hand ones work great!</p>
+        </div>
+        <div class="how-step">
+          <div class="hs-icon">👕</div>
+          <h4>Dress Comfortable</h4>
+          <p>Wear loose, easy-to-move-in clothes and trainers with good grip — no special kit needed!</p>
+        </div>
+        <div class="how-step">
+          <div class="hs-icon">💧</div>
+          <h4>Grab a Drink</h4>
+          <p>Bring a water bottle to stay hydrated — you'll be running around and working up a sweat!</p>
+        </div>
+        <div class="how-step">
+          <div class="hs-icon">🌳</div>
+          <h4>Head to the Park</h4>
+          <p>We play at <strong>Tom Sawyer Park</strong> and <strong>Briar Hill Park</strong> — no booking needed!</p>
+        </div>
+        <div class="how-step">
+          <div class="hs-icon">🧑</div>
+          <h4>Bring a Grown-Up</h4>
+          <p>Have a parent or adult nearby — they can cheer, feed balls, or just watch!</p>
+        </div>
+        <div class="how-step">
+          <div class="hs-icon">🏅</div>
+          <h4>Play &amp; Have Fun!</h4>
+          <p>Hit rallies, play games, keep it casual — every swing counts!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== PRICING ======== -->
+  <section class="section">
+    <h2 class="section-title">Simple Pricing 💰</h2>
+    <p class="section-subtitle">Casual, low-cost sessions at <strong>Tom Sawyer Park</strong> or <strong>Briar Hill Park</strong> — no club membership needed!</p>
+    <div class="pricing-row">
+
+      <div class="price-card">
+        <div class="pc-badge">Starter</div>
+        <div class="pc-price">$15<span>/hr</span></div>
+        <div class="pc-label">Drop-In Session</div>
+        <ul class="pc-features">
+          <li>✅ 1-hour session</li>
+          <li>✅ Tom Sawyer or Briar Hill Park</li>
+          <li>✅ 1 child</li>
+          <li>✅ Balls provided</li>
+          <li>✅ Adult supervision included</li>
+        </ul>
+        <a href="about.html" class="btn btn-primary" style="margin-top:auto;">Learn More</a>
+      </div>
+
+      <div class="price-card price-card-featured">
+        <div class="pc-badge">Most Popular ⭐</div>
+        <div class="pc-price">$20<span>/hr</span></div>
+        <div class="pc-label">Pair Session</div>
+        <ul class="pc-features">
+          <li>✅ 1-hour session</li>
+          <li>✅ Tom Sawyer or Briar Hill Park</li>
+          <li>✅ 2 children together</li>
+          <li>✅ Balls provided</li>
+          <li>✅ Adult supervision included</li>
+        </ul>
+        <a href="skills.html" class="btn btn-secondary" style="margin-top:auto;">See Drills</a>
+      </div>
+
+      <div class="price-card">
+        <div class="pc-badge">Best Value</div>
+        <div class="pc-price">$30<span>/hr</span></div>
+        <div class="pc-label">Small Group</div>
+        <ul class="pc-features">
+          <li>✅ 1-hour session</li>
+          <li>✅ Tom Sawyer or Briar Hill Park</li>
+          <li>✅ Up to 4 children</li>
+          <li>✅ Balls provided + mini games</li>
+          <li>✅ Adult supervision included</li>
+        </ul>
+        <a href="shots.html" class="btn btn-orange" style="margin-top:auto;">See Shots</a>
+      </div>
+
+    </div>
+    <p style="text-align:center; font-size:0.9rem; color:#777; margin-top:24px;">
+      💡 All sessions are casual and relaxed — no pressure, no uniforms, just fun tennis!
+    </p>
+  </section>
+
+  <!-- ======== AGE BADGES ======== -->
+  <section class="section">
+    <h2 class="section-title">Perfect for Every Age! 🌈</h2>
+    <p class="section-subtitle">Red ball tennis grows with you — start at any age!</p>
+    <div class="age-badge-strip">
+      <div class="age-badge">
+        <div class="ab-emoji">🐣</div>
+        <div class="ab-title">Age 5–6</div>
+        <div class="ab-sub">Start with drills &amp; balancing!</div>
+      </div>
+      <div class="age-badge">
+        <div class="ab-emoji">🐥</div>
+        <div class="ab-title">Age 7–8</div>
+        <div class="ab-sub">Forehands &amp; mini rallies!</div>
+      </div>
+      <div class="age-badge">
+        <div class="ab-emoji">🐦</div>
+        <div class="ab-title">Age 9–10</div>
+        <div class="ab-sub">All shots + serve practice!</div>
+      </div>
+      <div class="age-badge">
+        <div class="ab-emoji">🦅</div>
+        <div class="ab-title">Ready to Fly!</div>
+        <div class="ab-sub">Move to orange &amp; green ball!</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== CTA BANNER ======== -->
+  <div class="home-cta-banner">
+    <h2>Ready to Head to the Park? <span class="racket-spin">🎾</span></h2>
+    <p>Grab a ball, find a court, bring a grown-up — and just go have fun!</p>
+    <div class="btn-group">
+      <a href="skills.html" class="btn btn-secondary">🤸 Start with Skills</a>
+      <a href="shots.html"  class="btn" style="background:white; color:var(--orange);">🎾 Explore Shots</a>
+    </div>
+  </div>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <span class="foot-balls">🎾 🎾 🎾</span>
+    <strong>KidsTennis — Let's Play! 🏆</strong>
+    <p>📞 502-802-9207 · ✉️ kidstennis@gmail.com · Tom Sawyer &amp; Briar Hill Parks</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+      document.getElementById('ham').classList.toggle('open');
+    }
+    // Close menu on link click
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+        document.getElementById('ham').classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>

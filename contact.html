@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us 📬 — KidsTennis</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .nav-links a[href="contact.html"] { background: var(--yellow); color: var(--nav-bg); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 16px;
+    }
+
+    .contact-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 40px 32px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .contact-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+
+    .cc-icon {
+      font-size: 3.2rem;
+      width: 80px; height: 80px;
+      background: var(--yellow-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contact-card.phone .cc-icon { background: var(--green-light); }
+    .contact-card.email .cc-icon { background: var(--blue-light); }
+
+    .cc-label {
+      font-size: 0.85rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #888;
+    }
+    .cc-value {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.2;
+      word-break: break-all;
+    }
+    .contact-card.phone .cc-value { color: var(--green); }
+    .contact-card.email .cc-value { color: var(--blue); font-size: 1.15rem; }
+
+    .cc-desc {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .cc-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 0.18s, box-shadow 0.18s;
+      margin-top: 4px;
+    }
+    .cc-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .contact-card.phone .cc-btn { background: var(--green); color: var(--white); }
+    .contact-card.email .cc-btn { background: var(--blue);  color: var(--white); }
+
+    .hours-box {
+      background: linear-gradient(135deg, var(--yellow-light), #fff3e0);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      margin-top: 48px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .hours-box h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: 20px; }
+    .hours-table { display: inline-flex; flex-direction: column; gap: 10px; text-align: left; min-width: 260px; }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 8px 0;
+      border-bottom: 1px dashed #ddd;
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row .day { color: #555; }
+    .hours-row .time { color: var(--nav-bg); font-weight: 900; }
+
+    .locations-box {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      margin-top: 28px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .locations-box h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: 20px; }
+    .loc-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+    .loc-item {
+      background: var(--green-light);
+      border-radius: var(--radius);
+      padding: 16px 28px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--nav-bg);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======== NAVIGATION ======== -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <span class="ball-icon"></span>
+      KidsTennis
+    </a>
+    <div class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="skills.html">🤸 Skills</a></li>
+      <li><a href="shots.html">🎾 Shots</a></li>
+      <li><a href="about.html">ℹ️ About</a></li>
+      <li><a href="contact.html" class="active">📬 Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ======== PAGE HERO ======== -->
+  <div class="page-hero yellow-bg">
+    <h1>Get In Touch 📬</h1>
+    <p>Questions about sessions, pricing, or locations? We'd love to hear from you — reach out any time!</p>
+  </div>
+
+  <!-- ======== CONTACT CARDS ======== -->
+  <section class="section">
+    <h2 class="section-title">Contact Us 👋</h2>
+    <p class="section-subtitle">Two easy ways to reach us — call or email, whatever works best!</p>
+
+    <div class="contact-grid">
+
+      <div class="contact-card phone">
+        <div class="cc-icon">📞</div>
+        <div class="cc-label">Call or Text</div>
+        <div class="cc-value">502-802-9207</div>
+        <div class="cc-desc">Give us a call or send a text — we're happy to answer questions about sessions, booking, or anything else!</div>
+        <a href="tel:5028029207" class="cc-btn">📞 Call Now</a>
+      </div>
+
+      <div class="contact-card email">
+        <div class="cc-icon">✉️</div>
+        <div class="cc-label">Email Us</div>
+        <div class="cc-value">kidstennis@gmail.com</div>
+        <div class="cc-desc">Drop us an email and we'll get back to you as soon as we can — usually within a day!</div>
+        <a href="mailto:kidstennis@gmail.com" class="cc-btn">✉️ Send Email</a>
+      </div>
+
+    </div>
+
+    <!-- Locations -->
+    <div class="locations-box">
+      <h3>🌳 Where We Play</h3>
+      <div class="loc-list">
+        <div class="loc-item">📍 Tom Sawyer Park</div>
+        <div class="loc-item">📍 Briar Hill Park</div>
+      </div>
+      <p style="margin-top:16px; font-size:0.95rem; color:#666;">Public courts — no booking required. Just show up!</p>
+    </div>
+
+    <!-- Hours -->
+    <div class="hours-box">
+      <h3>🕐 When We're Available</h3>
+      <div class="hours-table">
+        <div class="hours-row"><span class="day">Monday – Friday</span><span class="time">4:00 PM – 7:00 PM</span></div>
+        <div class="hours-row"><span class="day">Saturday</span><span class="time">9:00 AM – 1:00 PM</span></div>
+        <div class="hours-row"><span class="day">Sunday</span><span class="time">10:00 AM – 12:00 PM</span></div>
+      </div>
+      <p style="margin-top:20px; font-size:0.9rem; color:#888;">Times are flexible — contact us to arrange something that works for your schedule!</p>
+    </div>
+
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <span class="foot-balls">🎾 🎾 🎾</span>
+    <strong>KidsTennis — Let's Play! 🏆</strong>
+    <p>📞 502-802-9207 · ✉️ kidstennis@gmail.com · Tom Sawyer &amp; Briar Hill Parks</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+      document.getElementById('ham').classList.toggle('open');
+    }
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+        document.getElementById('ham').classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
