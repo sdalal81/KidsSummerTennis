@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enrollment Consent Form — Kids Summer Tennis | Louisville Area</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .nav-links a[href="contact.html"] { background: var(--yellow); color: var(--nav-bg); }
+
+    .form-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 48px 48px 40px;
+    }
+
+    .form-header {
+      text-align: center;
+      border-bottom: 3px solid var(--green);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+    .form-header .logo-line {
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--green);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .form-header h1 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .form-header p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .form-section {
+      margin-bottom: 32px;
+    }
+    .form-section h2 {
+      font-size: 1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--green);
+      border-bottom: 1.5px solid var(--green-light);
+      padding-bottom: 6px;
+      margin-bottom: 18px;
+    }
+
+    .field-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+      min-width: 180px;
+    }
+    .field.full { flex: 0 0 100%; }
+    .field label {
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #555;
+    }
+    .field-line {
+      border: none;
+      border-bottom: 1.5px solid #ccc;
+      height: 28px;
+      width: 100%;
+      background: transparent;
+    }
+
+    .waiver-box {
+      background: #f9f9f9;
+      border: 1.5px solid #e0e0e0;
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      font-size: 0.88rem;
+      color: #444;
+      line-height: 1.7;
+    }
+    .waiver-box p { margin-bottom: 10px; }
+    .waiver-box p:last-child { margin-bottom: 0; }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 0.92rem;
+      color: #333;
+      line-height: 1.5;
+    }
+    .checkbox-row .cb-box {
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid #888;
+      border-radius: 3px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .sig-row {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .sig-field {
+      flex: 1;
+      min-width: 200px;
+    }
+    .sig-field label {
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #555;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .sig-line {
+      border-bottom: 1.5px solid #333;
+      height: 36px;
+      width: 100%;
+    }
+
+    .form-footer-note {
+      text-align: center;
+      font-size: 0.82rem;
+      color: #999;
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    /* --- Download/Print button bar --- */
+    .print-bar {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .print-bar .btn-print {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+    .btn-print:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .btn-print-primary { background: var(--green); color: var(--white); }
+    .btn-print-secondary { background: var(--white); color: var(--dark); border: 2px solid #ddd; }
+
+    /* --- Print styles --- */
+    @media print {
+      .nav, .print-bar, .page-hero, footer { display: none !important; }
+      body { background: white; }
+      .section { padding: 0; }
+      .form-wrap { box-shadow: none; padding: 0; }
+      .field-line { border-bottom: 1px solid #000; }
+      .sig-line { border-bottom: 1px solid #000; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======== NAVIGATION ======== -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <span class="ball-icon"></span>
+      Kids Summer Tennis
+    </a>
+    <div class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="skills.html">🤸 Skills</a></li>
+      <li><a href="shots.html">🎾 Shots</a></li>
+      <li><a href="about.html">ℹ️ About</a></li>
+      <li><a href="contact.html">📬 Contact</a></li>
+      <li><a href="enroll.html">✅ Enroll</a></li>
+    </ul>
+  </nav>
+
+  <!-- ======== PAGE HERO ======== -->
+  <div class="page-hero yellow-bg">
+    <h1>Enrollment Consent Form 📋</h1>
+    <p>Please print, fill out, and bring this form on the first day of your child's session.</p>
+  </div>
+
+  <!-- ======== PRINT BUTTONS ======== -->
+  <section class="section" style="padding-bottom: 0;">
+    <div class="print-bar">
+      <button class="btn-print btn-print-primary" onclick="window.print()">🖨️ Print Form</button>
+      <button class="btn-print btn-print-secondary" onclick="savePDF()">⬇️ Save as PDF</button>
+      <a href="contact.html" class="btn-print btn-print-secondary">← Back to Contact</a>
+    </div>
+  </section>
+
+  <!-- ======== CONSENT FORM ======== -->
+  <section class="section" style="padding-top: 8px;">
+    <div class="form-wrap">
+
+      <!-- Header -->
+      <div class="form-header">
+        <div class="logo-line">🎾 Kids Summer Tennis</div>
+        <h1>Participant Enrollment &amp; Consent Form</h1>
+        <p>502-802-9207 · kidssummertennis@gmail.com · Tom Sawyer &amp; Briar Hill Parks</p>
+      </div>
+
+      <!-- Child Info -->
+      <div class="form-section">
+        <h2>Child Information</h2>
+        <div class="field-row">
+          <div class="field">
+            <label>Child's Full Name</label>
+            <div class="field-line"></div>
+          </div>
+          <div class="field" style="max-width: 120px;">
+            <label>Age</label>
+            <div class="field-line"></div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Date of Birth</label>
+            <div class="field-line"></div>
+          </div>
+          <div class="field">
+            <label>T-Shirt Size</label>
+            <div class="field-line"></div>
+          </div>
+          <div class="field">
+            <label>Session Start Date</label>
+            <div class="field-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Parent / Guardian Info -->
+      <div class="form-section">
+        <h2>Parent / Guardian Information</h2>
+        <div class="field-row">
+          <div class="field">
+            <label>Parent / Guardian Name</label>
+            <div class="field-line"></div>
+          </div>
+          <div class="field">
+            <label>Relationship to Child</label>
+            <div class="field-line"></div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Phone Number</label>
+            <div class="field-line"></div>
+          </div>
+          <div class="field">
+            <label>Email Address</label>
+            <div class="field-line"></div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field full">
+            <label>Home Address</label>
+            <div class="field-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Emergency Contact -->
+      <div class="form-section">
+        <h2>Emergency Contact (if different from above)</h2>
+        <div class="field-row">
+          <div class="field">
+            <label>Name</label>
+            <div class="field-line"></div>
+          </div>
+          <div class="field">
+            <label>Relationship to Child</label>
+            <div class="field-line"></div>
+          </div>
+          <div class="field">
+            <label>Phone Number</label>
+            <div class="field-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Medical Info -->
+      <div class="form-section">
+        <h2>Medical &amp; Health Information</h2>
+        <div class="field-row">
+          <div class="field full">
+            <label>Known Allergies (food, medication, environmental)</label>
+            <div class="field-line"></div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field full">
+            <label>Medical Conditions or Physical Limitations We Should Know About</label>
+            <div class="field-line"></div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field full">
+            <label>Current Medications (if any)</label>
+            <div class="field-line"></div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field full">
+            <label>Physician / Pediatrician Name &amp; Phone</label>
+            <div class="field-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Authorizations -->
+      <div class="form-section">
+        <h2>Authorizations</h2>
+        <div class="checkbox-row">
+          <div class="cb-box"></div>
+          <span><strong>Medical Treatment Authorization:</strong> In the event of an emergency and I cannot be reached, I authorize Kids Summer Tennis staff to seek necessary medical treatment for my child.</span>
+        </div>
+        <div class="checkbox-row">
+          <div class="cb-box"></div>
+          <span><strong>Photo &amp; Video Consent:</strong> I give permission for my child's photo or video to be taken during sessions and used on the Kids Summer Tennis website and social media for promotional purposes.</span>
+        </div>
+        <div class="checkbox-row">
+          <div class="cb-box"></div>
+          <span><strong>Sunscreen &amp; First Aid:</strong> I authorize staff to apply sunscreen and basic first aid (bandages, ice packs) to my child as needed.</span>
+        </div>
+      </div>
+
+      <!-- Waiver -->
+      <div class="form-section">
+        <h2>Liability Waiver &amp; Release</h2>
+        <div class="waiver-box">
+          <p>I, the undersigned parent or legal guardian, acknowledge that participation in tennis activities involves inherent physical risks including, but not limited to, falls, sprains, and contact with equipment. I voluntarily enroll my child with full understanding of these risks.</p>
+          <p>I hereby release Kids Summer Tennis, its coaches, volunteers, and affiliates from any and all liability, claims, or demands arising from my child's participation in any program activity, except in cases of gross negligence or willful misconduct.</p>
+          <p>I confirm that my child is in good physical health and capable of participating in athletic activities. I agree to promptly notify the program of any changes to my child's health status.</p>
+          <p>I have read and agree to all policies, including the cancellation policy (24-hour notice required for session cancellations).</p>
+        </div>
+      </div>
+
+      <!-- Signature -->
+      <div class="form-section">
+        <h2>Signature</h2>
+        <div class="sig-row">
+          <div class="sig-field">
+            <label>Parent / Guardian Signature</label>
+            <div class="sig-line"></div>
+          </div>
+          <div class="sig-field" style="max-width: 180px;">
+            <label>Date</label>
+            <div class="sig-line"></div>
+          </div>
+        </div>
+        <div class="sig-row" style="margin-top: 24px;">
+          <div class="sig-field">
+            <label>Printed Name</label>
+            <div class="sig-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-footer-note">
+        Please return this completed form to your coach on the first day of your child's session.<br>
+        Questions? Call or text 502-802-9207 or email kidssummertennis@gmail.com
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <span class="foot-balls">🎾 🎾 🎾</span>
+    <strong>Kids Summer Tennis — Let's Play! 🏆</strong>
+    <p>📞 502-802-9207 · ✉️ kidssummertennis@gmail.com · Tom Sawyer &amp; Briar Hill Parks</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+      document.getElementById('ham').classList.toggle('open');
+    }
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+        document.getElementById('ham').classList.remove('open');
+      });
+    });
+    function savePDF() {
+      window.print();
+    }
+  </script>
+</body>
+</html>

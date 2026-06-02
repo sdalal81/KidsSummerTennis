@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Us 📬 — KidsTennis</title>
+  <title>Contact Us 📬 — Kids Summer Tennis | Louisville Area</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     .nav-links a[href="contact.html"] { background: var(--yellow); color: var(--nav-bg); }
@@ -79,6 +79,8 @@
     .cc-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
     .contact-card.phone .cc-btn { background: var(--green); color: var(--white); }
     .contact-card.email .cc-btn { background: var(--blue);  color: var(--white); }
+    .contact-card.consent .cc-icon { background: #f3e5f5; }
+    .contact-card.consent .cc-btn { background: var(--orange); color: var(--white); }
 
     .hours-box {
       background: linear-gradient(135deg, var(--yellow-light), #fff3e0);
@@ -137,7 +139,7 @@
   <nav class="nav">
     <a href="index.html" class="nav-logo">
       <span class="ball-icon"></span>
-      KidsTennis
+      Kids Summer Tennis
     </a>
     <div class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -148,6 +150,7 @@
       <li><a href="shots.html">🎾 Shots</a></li>
       <li><a href="about.html">ℹ️ About</a></li>
       <li><a href="contact.html" class="active">📬 Contact</a></li>
+      <li><a href="enroll.html">✅ Enroll</a></li>
     </ul>
   </nav>
 
@@ -175,9 +178,17 @@
       <div class="contact-card email">
         <div class="cc-icon">✉️</div>
         <div class="cc-label">Email Us</div>
-        <div class="cc-value">kidstennis@gmail.com</div>
+        <div class="cc-value">kidssummertennis@gmail.com</div>
         <div class="cc-desc">Drop us an email and we'll get back to you as soon as we can — usually within a day!</div>
-        <a href="mailto:kidstennis@gmail.com" class="cc-btn">✉️ Send Email</a>
+        <a href="mailto:kidssummertennis@gmail.com" class="cc-btn">✉️ Send Email</a>
+      </div>
+
+      <div class="contact-card consent">
+        <div class="cc-icon">📋</div>
+        <div class="cc-label">Before You Enroll</div>
+        <div class="cc-value" style="font-size:1.1rem;">Consent Form</div>
+        <div class="cc-desc">Download and print the enrollment consent form. Fill it out and bring it on your child's first day!</div>
+        <a href="consent.html" class="cc-btn">📋 Get Consent Form</a>
       </div>
 
     </div>
@@ -208,8 +219,8 @@
   <!-- ======== FOOTER ======== -->
   <footer class="footer">
     <span class="foot-balls">🎾 🎾 🎾</span>
-    <strong>KidsTennis — Let's Play! 🏆</strong>
-    <p>📞 502-802-9207 · ✉️ kidstennis@gmail.com · Tom Sawyer &amp; Briar Hill Parks</p>
+    <strong>Kids Summer Tennis — Let's Play! 🏆</strong>
+    <p>📞 502-802-9207 · ✉️ kidssummertennis@gmail.com · Tom Sawyer &amp; Briar Hill Parks</p>
   </footer>
 
   <script>
